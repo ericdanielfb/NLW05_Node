@@ -61,6 +61,8 @@ class ConnectionsService {
         user_id,
       })
       .execute();
+
+      return settings;
   }
 }
 

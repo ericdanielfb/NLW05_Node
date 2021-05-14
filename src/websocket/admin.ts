@@ -36,11 +36,11 @@ io.on("connect", async (socket) => {
     });
   });
 
-  socket.on("admin_user_in_support", async (params) => {
-    const { user_id } = params;
+  // socket.on("admin_user_in_support", async (params) => {
+  //   const { user_id } = params;
 
-    const connection = await connectionsService.updateAdminId(user_id, socket.id);
+  //   const connection = await connectionsService.updateAdminId(user_id, socket.id);
 
-    io.emit("admin_list_all_users", allConnectionWithoutAdmin);
-  });
+  //   io.emit("admin_list_all_users", allConnectionWithoutAdmin);
+  // });
 });

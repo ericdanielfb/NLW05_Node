@@ -23,6 +23,10 @@ function call(id) {
   );
 
   const template = document.getElementById("admin_template").innerHTML;
+  const btnAtd = document.getElementById(`btn_atd_${id}`);
+
+  btnAtd.innerText = "Em atendimento";
+  btnAtd.style.pointerEvents = "none";
 
   const rendered = Mustache.render(template, {
     email: connection.user.email,
@@ -36,7 +40,6 @@ function call(id) {
   };
 
   socket.emit("admin_user_in_support", params);
-  
   socket.emit("admin_list_messages_by_user", params, (messages) => {
     const divMessages = document.getElementById(
       `allMessages${connection.user_id}`
@@ -92,7 +95,7 @@ function sendMessage(id) {
 
 socket.on("admin_receive_message", (data) => {
   const connection = userConnections.find(
-    (connection) => (connection.socket_id = data.socket_id)
+    (connection) => connection.socket_id == data.socket_id
   );
 
   const divMessages = document.getElementById(
